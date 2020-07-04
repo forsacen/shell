@@ -63,7 +63,6 @@ function execBackgrand(cmd,args,options){
     })
     shell.on('close', (code) => {
         console.log(`子进程退出，退出码 ${code}`)
-        resolve()
     })
 }
 
