@@ -1,4 +1,5 @@
 const {spawn}=require('child_process')
+const {spawnSync}=require('child_process')
 
 function exec(cmd,args,options){
     if(!args){
@@ -14,6 +15,13 @@ function exec(cmd,args,options){
     shell.on('close', (code) => {
         console.log(`子进程退出，退出码 ${code}`)
     })
+}
+
+function execSync(cmd,args,options){
+    if(!args){
+        args=[]
+    }
+    return spawnSync(cmd,args,options)
 }
 
 function execPromsify(cmd,args,options){
@@ -57,4 +65,10 @@ function execBackgrand(cmd,args,options){
         console.log(`子进程退出，退出码 ${code}`)
         resolve()
     })
+}
+
+module.exports={
+    exec:exec,
+    execPromsify:execPromsify,
+    execBackgrand:execBackgrand,
 }
