@@ -69,6 +69,7 @@ function execBackgrand(cmd,args,options){
 
 module.exports={
     exec:exec,
+    execSync:execSync,
     execPromsify:execPromsify,
     execBackgrand:execBackgrand,
 }
