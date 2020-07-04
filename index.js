@@ -24,8 +24,8 @@ function execSync(cmd,args,options){
     return spawnSync(cmd,args,options)
 }
 
-function execPromsify(cmd,args,options){
-    return new Promise(function (resolve) {
+function execPromsify(cmd,args,options,ignoreErr=false){
+    return new Promise(function (resolve,reject) {
         if(!args){
             args=[]
         }
@@ -35,6 +35,9 @@ function execPromsify(cmd,args,options){
         })
         shell.stderr.on('data', (data) => {
             console.error(data.toString())
+            if(ignoreErr){
+                reject()
+            }
         })
         shell.on('close', (code) => {
             console.log(`子进程退出，退出码 ${code}`)
